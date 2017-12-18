@@ -14,16 +14,16 @@
 		<h:form class="form-group" enctype="multipart/form-data" id="postForm">
 			<h2>Nuevo Post</h2>
 			<div>
-				<label for="title" class="sr-only">Titulo:</label>
-				<h:inputText value="#{postMb.title}" styleclass="form-control" />
+				<h:outputText for="title" class="sr-only">Titulo:</h:outputText>
+				<h:inputText value="#{postMb.title}" styleClass="form-control" />
 			</div>
 			<div>
-				<label for="content" class="sr-only">Contenido</label>
-				<h:inputTextarea value="#{postMb.content}" styleclass="form-control" />
+				<h:outputText for="content" class="sr-only">Contenido:</h:outputText>
+				<h:inputTextarea value="#{postMb.content}" styleClass="form-control" />
 			</div>
 			<div>
 				<h:inputFile id="file" value="#{postMb.file}"
-					syleclass="form-control" />
+					syleClass="form-control" />
 				<h:message for="file"></h:message>
 			</div>
 			<h:commandButton class="btn btn-md btn-primary" value="Publicar"

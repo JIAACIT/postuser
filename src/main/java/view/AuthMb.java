@@ -39,20 +39,18 @@ public class AuthMb implements Serializable {
 	public User getProfileUser() {
 		return profileUser;
 	}
-
 	public void setProfileUser(User profileUser) {
 		this.profileUser = profileUser;
 	}
-
 	private Part file;
-
+	
 	private String filter;
 	private List<User> result;
 
 	public boolean isLogged() {
 		return currentUser != null;
 	}
-
+	//ingresar al sistema
 	public String login() throws AuthenticationFailure {
 		try {
 			currentUser = userCntr.getAuthUser(username, password);
@@ -71,11 +69,11 @@ public class AuthMb implements Serializable {
 	public List<User> all() {
 		return userCntr.all();
 	}
-
+	//buscar usuario search.xhtml
 	public void search() {
 		setResult(userCntr.searchUsers(filter));
 	}
-
+	//salir del sistema
 	public String logout() {
 		currentUser = null;
 		return "index?faces-redirect=true";
@@ -132,7 +130,7 @@ public class AuthMb implements Serializable {
 	public void setResult(List<User> result) {
 		this.result = result;
 	}
-
+	
 	public List<User> getFollowing() {
 		return following;
 	}
@@ -148,7 +146,7 @@ public class AuthMb implements Serializable {
 	public void setFollowers(List<User> followers) {
 		this.followers = followers;
 	}
-
+	//seguir usuario profile.xhtml
 	public void follow() {
 		Image prflAvtr = profileUser.getAvatar();
 		Image crntUsrAvtr = currentUser.getAvatar();
@@ -163,7 +161,7 @@ public class AuthMb implements Serializable {
 		userCntr.changePassword(currentUser, password);
 		return "home?faces-redirect=true";
 	}
-
+	//Actualizar avatar
 	public String updateAvatar() {
 		try {
 			Image img = null;
@@ -182,7 +180,7 @@ public class AuthMb implements Serializable {
 		}
 		return null;
 	}
-
+	// perfil de usuario para cargar profile.xhtml
 	public String profile(User u) {
 		setProfileUser(u);
 		setFollowing(userCntr.getFollowing(u));

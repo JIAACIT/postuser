@@ -35,7 +35,7 @@ public class User {
 	@Size(min=2, max=255)
 	private String lname;
 
-	@NotNull
+	@NotNull (message = "Usted debe ser mayor de 18 anios, valor maximo permitido 150")  
 	@Min(value = 18)
 	@Max(value = 150)
 	private int age;

@@ -29,18 +29,30 @@
 						</h:commandLink>
 					</h:form></li>
 			</ul>
-			<ul>
-				<li>Siguiendo a #{authMb.following.size()} usuarios</li>
-				<ui:repeat var="user" id="following" value="#{authMb.following}">
-					<li>#{user.name} - #{user.lname} - #{user.email}</li>
-				</ui:repeat>
-			</ul>
-			<ul>
-				<li>Lo siguen #{authMb.followers.size()} usuarios</li>
-				<ui:repeat var="user" id="followers" value="#{authMb.followers}">
-					<li>#{user.name} - #{user.lname} - #{user.email}</li>
-				</ui:repeat>
-			</ul>
+			<div class="panel panel-info" id="output" style>
+				<div class="panel panel-heading">
+					<h:outputText>Siguiendo:</h:outputText>
+				</div>
+				<div class="panel panel-body">
+					<ul>
+						<li>Siguiendo a #{authMb.following.size()} usuarios</li>
+						<ui:repeat var="user" id="following" value="#{authMb.following}">
+							<li>#{user.name} - #{user.lname} - #{user.email}</li>
+						</ui:repeat>
+					</ul>
+				</div>
+				<div class="panel panel-heading">
+					<h:outputText>Seguidores:</h:outputText>
+				</div>
+				<div class="panel panel-body">
+					<ul>
+						<li>#{authMb.followers.size()} usuarios</li>
+						<ui:repeat var="user" id="followers" value="#{authMb.followers}">
+							<li>#{user.name} - #{user.lname} - #{user.email}</li>
+						</ui:repeat>
+					</ul>
+				</div>
+			</div>
 			<hr></hr>
 			<f:view>
 				<h2>
