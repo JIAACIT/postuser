@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/include/template.xhtml">
+	<ui:define name="title">PostUser - register</ui:define>
+	<ui:define name="content">
+		<h1>Términos y Condiciones</h1>
+		<div class="col-md-6">
+			<f:view>
+				<h2>
+					Politica de privacidad <span class="badge badge-secondary">Nuevo</span>
+				</h2>
+				<div>
+					<p class="font-italic">La red social PostUser esta diseñada
+						para personas mayores de dieciocho (18) años, para registrarse
+						usted puede aceptar o rechazar la politica de uso del sistema.</p>
+					<p class="font-weight-light">PostUser 2017</p>
+					<form>
+						<h:button class="btn btn-primary" outcome="createUser"
+							value="Acepto" />
+						<h:button class="btn btn-secondary" outcome="index"
+							value="No Acepto" />
+					</form>
+					<h3>
+						Algunos de nuestros usuarios <small>Y muchos mas</small>
+					</h3>
+					<ul>
+						<ui:repeat value="#{userMb.all()}" var="user">
+							<li>#{user.lname}, #{user.name}</li>
+						</ui:repeat>
+					</ul>
+				</div>
+			</f:view>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

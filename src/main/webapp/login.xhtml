@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/include/template.xhtml">
+	<ui:define name="title">PostUser login</ui:define>
+	<ui:define name="content">
+		<h1>Entrar a PostUser</h1>
+		<div class="col-md-3">
+			<h:form class="form-signin">
+				<h2 class="form-signin-heading">Ingrese</h2>
+				<div>
+				
+					<label for="inputUser" class="sr-only">Email:</label>
+					<h:inputText value="#{authMb.username}" class="form-control" />
+				</div>
+				<div>
+					<label for="inputPassword" class="sr-only">Password</label>
+					<h:inputSecret value="#{authMb.password}" class="form-control" />
+				</div>
+				<h:commandButton class="btn btn-primary" action="#{authMb.login()}"
+					value="Ingresar" />
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

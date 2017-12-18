@@ -1,0 +1,21 @@
+.img {
+	display: block;
+	max-width: 100%;
+	max-height: 300px;
+}
+
+.posts > .post {
+    border: 1px solid;
+    margin-bottom: 4px;
+}
+
+.posts > .post > .title {
+	border-bottom: 1px solid lightgray;
+}
+
+.col-md-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+    background-color: thistle;
+}

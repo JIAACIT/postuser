@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<div class="container" id="container">
+	<ui:composition template="/WEB-INF/include/template.xhtml">
+		<hr></hr>
+		<ui:define name="title">PostUser - Perfil <h:outputText
+				value="#{authMb.profileUser.name}" />
+		</ui:define>
+		<ui:define name="content">
+			<h1>Perfil de Usuario</h1>
+			<ul>
+				<li><img alt="profile photo"
+					src="/image/#{authMb.profileUser.avatar.path}"
+					class="rounded-circle" style="width: 90px; height: 90px;" /></li>
+				<li><label>Nombre: </label> <h:outputText
+						value="#{authMb.profileUser.name}" /></li>
+				<li><label>Edad: </label> <h:outputText
+						value="#{authMb.profileUser.age}" /></li>
+				<li><label>e-mail: </label> <h:outputText
+						value="#{authMb.profileUser.email}" /></li>
+				<li><h:form>
+						<h:commandLink styleClass="btn btn-primary" value="seguir"
+							action="#{authMb.follow}">
+							<span class="glyphicon glyphicon-user"></span>
+						</h:commandLink>
+					</h:form></li>
+			</ul>
+			<ul>
+				<li>Siguiendo a #{authMb.following.size()} usuarios</li>
+				<ui:repeat var="user" id="following" value="#{authMb.following}">
+					<li>#{user.name} - #{user.lname} - #{user.email}</li>
+				</ui:repeat>
+			</ul>
+			<ul>
+				<li>Lo siguen #{authMb.followers.size()} usuarios</li>
+				<ui:repeat var="user" id="followers" value="#{authMb.followers}">
+					<li>#{user.name} - #{user.lname} - #{user.email}</li>
+				</ui:repeat>
+			</ul>
+			<hr></hr>
+			<f:view>
+				<h2>
+					Post de
+					<h:outputText value="#{authMb.profileUser.name}" />
+				</h2>
+				<h:panelGroup layout="block" id="postList">
+					<ui:repeat value="#{postMb.listPostUser()}" var="post">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="title">
+									#{post.getTitle()} <small class="text-muted">#{post.getDate()}</small>
+								</h4>
+							</div>
+							<div class="panel-body">
+								<h:graphicImage value="/image/#{post.image.path}" class="img" />
+								<br></br>
+								<h:outputText value="#{post.content}" />
+							</div>
+							<h:form>
+								<h:commandLink styleClass="btn btn-primary"
+									action="#{postMb.like(post)}">
+									<span class="glyphicon glyphicon-thumbs-up"></span>
+								</h:commandLink>
+								<span><h:outputText value="#{postMb.getLikeCount(post)}" />
+									likes</span>
+							</h:form>
+						</div>
+						<!-- end block -->
+					</ui:repeat>
+				</h:panelGroup>
+			</f:view>
+		</ui:define>
+	</ui:composition>
+</div>
+</html>

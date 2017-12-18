@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/include/template.xhtml">
+	<ui:define name="title">PostUser - crear post</ui:define>
+	<ui:define name="content">
+		<h1>
+			PostUser -
+			<h:outputText value="#{authMb.currentUser.name} " />
+			<h:outputText value="#{authMb.currentUser.lname}" />
+		</h1>
+		<h:form class="form-group" enctype="multipart/form-data" id="postForm">
+			<h2>Nuevo Post</h2>
+			<div>
+				<label for="title" class="sr-only">Titulo:</label>
+				<h:inputText value="#{postMb.title}" styleclass="form-control" />
+			</div>
+			<div>
+				<label for="content" class="sr-only">Contenido</label>
+				<h:inputTextarea value="#{postMb.content}" styleclass="form-control" />
+			</div>
+			<div>
+				<h:inputFile id="file" value="#{postMb.file}"
+					syleclass="form-control" />
+				<h:message for="file"></h:message>
+			</div>
+			<h:commandButton class="btn btn-md btn-primary" value="Publicar"
+				action="#{postMb.create}">
+			</h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,8 @@
+<tomee>
+	<Resource id="DbDs" type="DataSource">
+	    JdbcDriver  com.mysql.jdbc.Driver
+	    JdbcUrl jdbc:mysql://localhost/PostUser
+	    UserName    postuser_admin
+	    Password    Jpa2017*
+	</Resource>
+</tomee>

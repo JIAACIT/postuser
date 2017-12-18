@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/include/template.xhtml">
+	<ui:define name="title">PostUser - crear usuario</ui:define>
+	<ui:define name="content">
+		<f:view>
+			<h:form enctype="multipart/form-data" id="form">
+				<h1>Crear Usuario</h1>
+				<div>
+					<label>Nombre :</label>
+					<h:inputText id="name" value="#{createUserMb.user.name}"
+						required="true" requiredMessage="Ingrese Nombre!"
+						styleClass="form-control" />
+					<h:message errorClass="alert alert-error" for="name"></h:message>
+				</div>
+				<div>
+					<label>Apellido :</label>
+					<h:inputText id="lname" value="#{createUserMb.user.lname}"
+						required="true" requiredMessage="Ingrese Apellido!"
+						styleClass="form-control" />
+					<h:message infoclass="info" for="lname"></h:message>
+				</div>
+				<div>
+					<label>Edad :</label>
+					<h:inputText id="age" value="#{createUserMb.user.age}"
+						required="true" requiredMessage="Ingrese Edad!"
+						styleClass="form-control" />
+					<h:message infoclass="info" for="age"></h:message>
+				</div>
+				<div>
+					<label>Email :</label>
+					<h:inputText id="email" value="#{createUserMb.user.email}"
+						required="true" requiredMessage="Ingrese email"
+						styleClass="form-control">
+						<f:ajax event="keyup" render="mensaje-email"
+							listener="#{createUserMb.validateemail}" />
+
+						<h:outputText id="mensaje-email" class="mensaje-error"
+							value="#{createUserMb.getEmailErrorMessage()}" />
+					</h:inputText>
+				</div>
+				<div>
+					<label>Contraseña :</label>
+					<h:inputSecret id="pwd" value="#{createUserMb.user.pwd}"
+						required="true" requiredMessage="Ingrese Contraseña!"
+						styleClass="form-control">
+						<f:ajax event="keyup" render="mensaje-pwd"
+							listener="#{createUserMb.validatepassword}" />
+						<h:outputText id="mensaje-pwd" class="mensaje-error"
+							value="#{createUserMb.getPasswordErrorMessage()}" />
+					</h:inputSecret>
+				</div>
+				<div>
+					<div>
+						<label>Avatar:</label>
+						<h:inputFile id="file" value="#{createUserMb.file}"
+							styleClass="form-control" />
+						<h:message for="file"></h:message>
+					</div>
+				</div>
+				<h:commandButton action="#{createUserMb.create}" value="Crear" styleClass="btn btn-primary">
+					<f:ajax execute="@form" event="change" render="age" />
+				</h:commandButton>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

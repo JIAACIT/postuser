@@ -1,0 +1,42 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition>
+	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-navbar-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<h:link class="navbar-brand" value="PostUser" outcome="index"
+				rendered="#{!authMb.logged}" />
+			<h:link class="navbar-brand" value="PostUser" outcome="home"
+				rendered="#{authMb.logged}" />
+		</div>
+		<div class="collapse navbar-collapse" id="bs-navbar-1">
+			<ul class="nav navbar-nav">
+				<li><h:link class="navbar-nav" value="Login" outcome="login"
+						rendered="#{!authMb.logged}" /></li>
+				<li><h:link class="navbar-nav" value="Registrarse"
+						outcome="createUser" rendered="#{!authMb.logged}" /></li>
+				<li><h:link class="navbar-nav" value="Mi muro" outcome="wall"
+						rendered="#{authMb.logged}" /></li>
+				<li><h:link class="navbar-nav" value="Mi perfil" outcome="myprofile"
+						rendered="#{authMb.logged}" /></li>
+				<li><h:link class="navbar-nav" value="Crear Post"
+						outcome="createPost" rendered="#{authMb.logged}" /></li>
+				<li><h:link class="navbar-nav" value="Buscar Usuario"
+						outcome="search" rendered="#{authMb.logged}" /></li>
+			</ul>
+			<h:form class="navbar-form navbar-left" rendered="#{authMb.logged}">
+				<h:commandLink class="btn btn-default" value="Salir"
+					action="#{authMb.logout()}" />
+			</h:form>
+		</div>
+	</nav>
+
+</ui:composition>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/include/template.xhtml">
+	<ui:define name="title">PostUser home</ui:define>
+	<ui:define name="content">
+		<h1>
+			<img alt="profile photo"
+				src="/image/#{authMb.currentUser.avatar.path}"
+				class="rounded-circle" style="width: 90px; height: 90px;" />
+			Bienvenido
+			<h:outputText value="#{authMb.currentUser.email}" />
+
+		</h1>
+		<f:view>
+			<h2>Ultimos Post</h2>
+			<h:panelGroup layout="block" id="postList">
+				<ui:repeat id="list" value="#{postMb.getPostsFromFollowing()}"
+					var="post">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3>
+								<img alt="profile photo" src="/image/#{post.user.avatar.path}"
+									class="rounded-circle" style="width: 90px; height: 90px;" />
+								<h:form style="display:inline">
+									<h:commandLink value="#{post.user.name}"
+										action="#{authMb.profile(post.user)}" />
+								</h:form>
+							</h3>
+							<h4 class="title">
+								#{post.getTitle()} <small class="text-muted">#{post.getDate()}</small>
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="content">
+								<h:graphicImage value="/image/#{post.image.path}" class="img" />
+								<h:outputText value="#{post.content}" />
+							</div>
+							<ul class="list-group">
+								<ui:repeat var="comment" value="#{commentMb.listByPost(post)}">
+									<li class="list-group-item"><strong> <h:outputText
+												value="#{comment.user.name}" />
+									</strong> <small> <h:outputText value="#{comment.date}">
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+											</h:outputText>
+									</small> <h:outputText value="#{comment.content}" /></li>
+								</ui:repeat>
+							</ul>
+							<h:form>
+								<h:commandLink styleClass="btn btn-primary"
+									action="#{postMb.like(post)}">
+									<span class="glyphicon glyphicon-thumbs-up"></span>
+								</h:commandLink>
+								<span><h:outputText value="#{postMb.getLikeCount(post)}" />
+									likes</span>
+							</h:form>
+							<h:form>
+								<h:inputText value="#{commentMb.comment}"
+									styleClass="form-control" />
+								<h:commandLink styleClass="btn btn-primary"
+									action="#{commentMb.create(post)}">Comentar
+								 <f:ajax render="@form :postList" event="click" execute="@form" />
+								</h:commandLink>
+							</h:form>
+						</div>
+					</div>
+				</ui:repeat>
+			</h:panelGroup>
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

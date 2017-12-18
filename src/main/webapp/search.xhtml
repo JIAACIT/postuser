@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/include/template.xhtml">
+	<ui:define name="title">PostUser - Mi Perfil</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h:inputText id="search" value="#{authMb.filter}" />
+			<h:commandLink class="btn btn-default" value="Search"
+				action="#{authMb.search}" />
+		</h:form>
+		<ul>
+			<ui:repeat var="user" id="output" value="#{authMb.result}">
+				<li><img alt="profile photo" src="/image/#{user.avatar.path}"
+					class="rounded-circle" style="width: 90px; height: 90px;" />
+					<h:form styleClass="form-inline" style="display:inline">
+						<h:commandLink value="#{user.name}"
+							action="#{authMb.profile(user)}" />
+					</h:form> - #{user.lname} - #{user.email}</li>
+			</ui:repeat>
+		</ul>
+	</ui:define>
+</ui:composition>
+</html>

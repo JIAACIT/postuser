@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/include/template.xhtml">
+	<ui:define name="title">PostUser - Mi Perfil</ui:define>
+	<ui:define name="content">
+		<h1>
+			<img alt="profile photo"
+				src="/image/#{authMb.currentUser.avatar.path}"
+				class="rounded-circle" style="width: 90px; height: 90px;" /> Mi
+			Perfil
+		</h1>
+		<ul>
+			<li><label>Nombre: </label> <h:outputText
+					value="#{authMb.currentUser.name}" /></li>
+			<li><label>Edad: </label> <h:outputText
+					value="#{authMb.currentUser.age}" /></li>
+			<li><label>e-mail: </label> <h:outputText
+					value="#{authMb.currentUser.email}" /></li>
+		</ul>
+		<h:form enctype="multipart/form-data" id="form">
+			<div>
+				<div>
+					<label>Cambiar avatar:</label>
+					<h:inputFile id="file" value="#{authMb.file}"
+						syleClass="form-control" />
+					<h:message for="file"></h:message>
+				</div>
+			</div>
+			<h:commandButton class="btn btn-default"
+				action="#{authMb.updateAvatar}" value="Cambiar" />
+		</h:form>
+		<hr />
+		<h:form id="pwd-form">
+			<h2>Cambiar Clave</h2>
+			<h:inputSecret id="password" value="#{authMb.password}" />
+			<h:commandLink class="btn btn-default" value="Cambiar"
+				action="#{authMb.changePassword}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
